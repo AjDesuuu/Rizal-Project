@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { BookOpen, Feather, Users, Flame, Shield, FileText, Heart, Star } from 'lucide-react';
+import { BookOpen, Feather, Users, Flame, Shield, FileText, Heart, Star, ChevronDown, ChevronUp } from 'lucide-react';
 
 const RizalFlowchart = () => {
-  const [activeStage, setActiveStage] = useState(null);
+  const [expandedStage, setExpandedStage] = useState(null);
 
   const stages = [
     {
@@ -13,11 +13,15 @@ const RizalFlowchart = () => {
       color: 'from-emerald-500 to-teal-600',
       borderColor: 'border-emerald-600',
       bgColor: 'bg-emerald-50',
-      content: {
-        'Key People': 'Mother Teodora Alonso (first teacher), Brother Paciano (revolutionary influence), Father Francisco Paula de Sanchez (liberal Jesuit mentor)',
-        'Formative Environments': 'Calamba (agrarian oppression and social inequality), Biñan (early formal education), Ateneo de Manila (Jesuit educational excellence)',
-        'Critical Incidents': 'Mother\'s unjust imprisonment by Spanish authorities, Execution of GOMBURZA priests in 1872',
-        'Significance': 'These experiences instilled early awareness of social injustice, colonial oppression, and the need for systemic reform, forming the foundation of his patriotic consciousness.'
+      summary: 'Foundation of Rizal\'s nationalist consciousness through family influence, educational experiences, and witnessing colonial injustices.',
+      details: {
+        writings: 'Early childhood observations; no formal writings from this period, but experiences documented in later memoirs and biographies.',
+        characters: 'Teodora Alonso (mother and first teacher), Paciano Rizal (revolutionary brother), Father Francisco Paula de Sanchez (Jesuit mentor), GOMBURZA martyrs',
+        ideas: 'Early awareness of social inequality, colonial oppression, importance of education, and justice. Seeds of reform thinking.',
+        emotions: 'Indignation at mother\'s unjust imprisonment, grief over GOMBURZA execution, pride in Filipino identity, determination for justice.',
+        symbolism: 'Mother\'s persecution symbolizes colonial injustice; GOMBURZA execution represents state violence against reform; Ateneo represents enlightenment.',
+        relevance: 'Establishes the foundational experiences that shaped Rizal\'s lifelong commitment to peaceful reform and education as liberation.',
+        impact: 'Transformed childhood experiences of oppression into a driving force for advocating systemic change through intellectual means.'
       }
     },
     {
@@ -28,11 +32,15 @@ const RizalFlowchart = () => {
       color: 'from-amber-500 to-orange-600',
       borderColor: 'border-amber-600',
       bgColor: 'bg-amber-50',
-      content: {
-        'Context': 'Composed at approximately eight years of age during his formative years in Calamba',
-        'Central Thesis': 'The poem declares that one who does not love his own language is worse than a beast and a putrid fish',
-        'Ideological Significance': 'Represents Rizal\'s earliest articulation of linguistic nationalism, establishing language as the foundation of cultural identity and national dignity',
-        'Evolution': 'Marks the transition from passive observation of colonial injustice to active assertion of Filipino cultural pride and distinctiveness'
+      summary: 'First articulation of linguistic nationalism - declaring love of one\'s native language as essential to human dignity.',
+      details: {
+        writings: '"Sa Aking Mga Kababata" (To My Fellow Children) - poem celebrating the Filipino language and cultural identity.',
+        characters: 'Implied Filipino youth and the general Filipino people as the audience; no specific characters, but speaks to a collective identity.',
+        ideas: 'Language as foundation of national identity; cultural pride; equality of all languages; Filipino self-worth.',
+        emotions: 'Pride in native language, defiance against cultural suppression, joy in Filipino identity, passionate defense of dignity.',
+        symbolism: 'Language represents freedom and identity; comparing those who reject their language to "beasts" symbolizes dehumanization.',
+        relevance: 'First literary declaration of Filipino cultural nationalism, establishing language as a pillar of national consciousness.',
+        impact: 'Planted the seed of cultural nationalism in young Rizal, establishing that Filipino identity must be actively defended and celebrated.'
       }
     },
     {
@@ -43,11 +51,15 @@ const RizalFlowchart = () => {
       color: 'from-blue-500 to-indigo-600',
       borderColor: 'border-blue-600',
       bgColor: 'bg-blue-50',
-      content: {
-        'Historical Context': 'Written at age 18 while studying at the University of Santo Tomas, winning first prize in a literary contest',
-        'Core Message': 'A call to Filipino youth to cultivate their intellectual faculties, artistic talents, and scientific knowledge as instruments of national progress',
-        'Ideological Framework': 'Education and intellectual development are positioned as the primary mechanisms for achieving national redemption and social transformation',
-        'Developmental Shift': 'Expands from cultural nationalism (language) to intellectual nationalism (education as liberation)'
+      summary: 'A clarion call to Filipino youth to pursue education and intellectual excellence as the path to national redemption.',
+      details: {
+        writings: '"A La Juventud Filipina" (To the Filipino Youth) - prize-winning poem written at University of Santo Tomas.',
+        characters: 'Filipino youth collectively; the future generation as agents of change; implied mentors and educators.',
+        ideas: 'Education as liberation, intellectual development as national progress, youth as hope, cultivation of arts and sciences.',
+        emotions: 'Hope for the future, inspiration and motivation, confidence in youth potential, urgency for enlightenment.',
+        symbolism: 'Youth as "fair hope of my Fatherland"; dawn represents enlightenment; genius represents Filipino potential.',
+        relevance: 'Shifts nationalism from cultural identity to intellectual empowerment, positioning education as the primary tool for liberation.',
+        impact: 'Crystallized Rizal\'s belief that enlightened minds would transform society, shaping his lifelong advocacy for educational reform.'
       }
     },
     {
@@ -58,11 +70,15 @@ const RizalFlowchart = () => {
       color: 'from-red-500 to-rose-600',
       borderColor: 'border-red-600',
       bgColor: 'bg-red-50',
-      content: {
-        'Character Analysis': 'Elias represents the radical, revolutionary approach to colonial resistance, believing armed struggle is necessary for liberation',
-        'Ideological Position': 'Advocates for violent overthrow of the colonial system, arguing that peaceful reform is insufficient given the depth of oppression',
-        'Symbolic Death': 'Elias dies in the forest, representing both the nobility of revolutionary sacrifice and the tragic futility of premature armed resistance',
-        'Rizal\'s Ambivalence': 'Through this character, Rizal acknowledges the legitimacy of revolutionary sentiment while not yet fully endorsing violent methods'
+      summary: 'Introduction of revolutionary consciousness through Elias, representing armed resistance as a legitimate but tragic path.',
+      details: {
+        writings: '"Noli Me Tangere" (Touch Me Not) - social novel exposing colonial abuses and presenting contrasting approaches to reform.',
+        characters: 'Elias (revolutionary idealist), Ibarra (reformist protagonist), Sisa (symbol of oppressed masses), Padre Dámaso (corrupt friar).',
+        ideas: 'Revolution vs. reform debate, social justice, colonial oppression, class consciousness, moral corruption of colonial system.',
+        emotions: 'Righteous anger, tragic resignation, revolutionary fervor, compassion for the oppressed, moral outrage.',
+        symbolism: 'Elias\'s death in the forest represents the premature nature of armed revolution; his sacrifice symbolizes noble but futile resistance.',
+        relevance: 'First major work acknowledging that violent revolution may be necessary, while still advocating for peaceful reform through Ibarra.',
+        impact: 'Forced Rizal to confront the revolutionary alternative, deepening his understanding of the complexity of colonial resistance.'
       }
     },
     {
@@ -73,11 +89,15 @@ const RizalFlowchart = () => {
       color: 'from-purple-500 to-violet-600',
       borderColor: 'border-purple-600',
       bgColor: 'bg-purple-50',
-      content: {
-        'Narrative Context': 'Father Florentino delivers a philosophical discourse over the body of Simoun, the failed revolutionary',
-        'Conditions for Revolution': 'Revolution will only succeed when: (1) oppression becomes unbearable, (2) the cause remains morally pure, (3) violence becomes the only remaining option',
-        'Theory of Change': 'Genuine reform must emerge either from enlightened governance or from an educated, unified populace, not from violent conspiracy',
-        'Ideological Maturation': 'Reflects a darker, more complex understanding of revolution while maintaining emphasis on moral and educational prerequisites'
+      summary: 'Father Florentino\'s discourse articulates the moral and practical conditions necessary for successful revolution.',
+      details: {
+        writings: '"El Filibusterismo" (The Reign of Greed) - darker sequel exploring failed revolutionary conspiracy and moral philosophy.',
+        characters: 'Simoun (failed revolutionary/Ibarra transformed), Father Florentino (voice of wisdom), Isagani (idealistic student).',
+        ideas: 'Conditions for just revolution, moral purity of cause, suffering as catalyst, enlightened populace as prerequisite for change.',
+        emotions: 'Disillusionment, philosophical resignation, deeper understanding of suffering, moral clarity, tragic wisdom.',
+        symbolism: 'Simoun\'s death represents consequences of premature/corrupt revolution; jewels thrown to sea symbolize wasted violent efforts.',
+        relevance: 'Presents a more nuanced philosophy: revolution is justified only under specific moral conditions and with popular support.',
+        impact: 'Matured Rizal\'s political thought, balancing revolutionary sympathy with insistence on moral foundations and popular readiness.'
       }
     },
     {
@@ -88,11 +108,15 @@ const RizalFlowchart = () => {
       color: 'from-pink-500 to-rose-600',
       borderColor: 'border-pink-600',
       bgColor: 'bg-pink-50',
-      content: {
-        'Historical Context': 'Written to honor twenty Filipino women who defied Spanish friars to establish a night school',
-        'Critique of Clerical Power': 'Condemns friar control over education and Filipino consciousness, describing it as tyranny concealed by religious authority',
-        'Advocacy for Women': 'Arguments that educated, empowered women are essential for national progress, as they shape future generations',
-        'Ideological Expansion': 'Broadens nationalist framework to include gender equality and women\'s liberation as integral to national independence'
+      summary: 'Expands nationalist framework to include women\'s liberation and education as essential to national progress.',
+      details: {
+        writings: '"Letter to the Young Women of Malolos" - essay honoring women who defied friars to pursue education.',
+        characters: 'Twenty women of Malolos (pioneers of women\'s education), Filipino mothers and daughters, oppressive Spanish friars.',
+        ideas: 'Women\'s education as national necessity, gender equality, maternal influence on future generations, resistance to clerical tyranny.',
+        emotions: 'Admiration and respect, solidarity with women\'s struggle, defiance against patriarchal oppression, hope for social transformation.',
+        symbolism: 'Women\'s night school symbolizes enlightenment against darkness; educated mothers represent the future of the nation.',
+        relevance: 'Recognizes that national liberation requires liberating all sectors of society, particularly women who shape the next generation.',
+        impact: 'Broadened Rizal\'s nationalism to encompass gender justice, understanding that true freedom must include women\'s empowerment.'
       }
     },
     {
@@ -103,11 +127,15 @@ const RizalFlowchart = () => {
       color: 'from-orange-500 to-amber-600',
       borderColor: 'border-orange-600',
       bgColor: 'bg-orange-50',
-      content: {
-        'Organizational Structure': 'Civic association with provincial councils (Consejo Supremo) designed to coordinate reform efforts across the archipelago',
-        'Stated Objectives': 'Unite the Filipino people, provide mutual protection and assistance, defend against injustice, promote education and economic development',
-        'Methodological Approach': 'Strictly non-violent and reformist, emphasizing collective action and peaceful civil society organization',
-        'Historical Outcome': 'Dissolved after only one meeting due to Rizal\'s immediate arrest and exile to Dapitan, though it inspired subsequent revolutionary organizations'
+      summary: 'Concrete political action - organizing Filipinos into a civic society for mutual aid, protection, and peaceful reform.',
+      details: {
+        writings: 'Constitution and founding documents of La Liga Filipina; manifestos outlining organizational structure and goals.',
+        characters: 'Rizal as founder, Filipino reformists and intellectuals, members seeking unity and mutual protection.',
+        ideas: 'Collective action, civil society organization, non-violent reform, mutual aid, education and economic development, unity.',
+        emotions: 'Hope for organized change, determination for peaceful progress, solidarity among Filipinos, urgency for action.',
+        symbolism: 'Liga represents organized civil resistance; its quick dissolution symbolizes colonial fear of Filipino unity.',
+        relevance: 'Marks transition from theoretical writings to practical political organizing, demonstrating commitment to peaceful reform.',
+        impact: 'Though immediately suppressed, La Liga proved Rizal\'s commitment to action and inspired future revolutionary organizations like Katipunan.'
       }
     },
     {
@@ -119,225 +147,214 @@ const RizalFlowchart = () => {
       borderColor: 'border-gray-900',
       bgColor: 'bg-gray-900',
       textColor: 'text-white',
-      content: {
-        'Composition': 'Written on the eve of his execution, concealed in an alcohol lamp, and later recovered by his family',
-        'Ultimate Sacrifice': 'Expresses willingness to die for the Philippines, transforming personal death into an act of national consecration',
-        'Symbolic Language': 'References the Philippines as "Pearl of the Orient" and envisions his blood nourishing the soil of freedom',
-        'Legacy': 'Martyrdom completes his transformation from reformist intellectual to immortal symbol of Filipino nationalism and resistance'
+      summary: 'Final testament before execution - consecrating his death as sacrifice for Philippine freedom and national redemption.',
+      details: {
+        writings: '"Mi Último Adiós" (My Last Farewell) - farewell poem hidden in alcohol lamp, discovered after execution.',
+        characters: 'Rizal himself as martyr, the Philippines personified as beloved homeland, Filipino people as inheritors of sacrifice.',
+        ideas: 'Martyrdom for nation, ultimate sacrifice, death as consecration, blood nourishing freedom, immortal patriotism.',
+        emotions: 'Peaceful acceptance of death, profound love for country, hope despite tragedy, serenity in sacrifice, eternal devotion.',
+        symbolism: 'Blood nourishing soil represents life giving life to freedom; dawn represents coming liberation; poem in lamp represents hidden truth.',
+        relevance: 'Transforms Rizal from reformist writer to immortal martyr, providing the revolutionary movement with its most powerful symbol.',
+        impact: 'Martyrdom completed Rizal\'s evolution - his death became the catalyst that ignited the revolution he intellectually prepared but never led.'
       }
     }
   ];
 
+  const toggleStage = (stageId) => {
+    setExpandedStage(expandedStage === stageId ? null : stageId);
+  };
+
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 p-8 relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8 relative overflow-hidden">
+      {/* Animated background pattern */}
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
+          backgroundSize: '50px 50px'
         }}></div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <div className="inline-block mb-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-xl">
-              <Star className="text-white w-10 h-10" />
+            <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+              <Star className="text-white w-8 h-8 md:w-12 md:h-12" />
             </div>
           </div>
-          <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
             JOSÉ RIZAL
           </h1>
-          <p className="text-2xl text-slate-300 font-light mb-6">
-            Ideological Evolution and the Path to National Consciousness
+          <p className="text-xl md:text-2xl text-amber-400 font-semibold mb-2">
+            Journey to Nationalism
           </p>
-          <div className="flex justify-center gap-6">
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
-              <span className="text-slate-200 font-medium">Conceptual Roadmap</span>
+          <p className="text-base md:text-lg text-slate-400 mb-6 max-w-2xl mx-auto">
+            Interactive roadmap of Rizal's transformation from child to national hero
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
+              <span className="text-slate-200 font-medium text-sm md:text-base">Interactive Roadmap</span>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
-              <span className="text-slate-200 font-medium">1861 - 1896</span>
+            <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
+              <span className="text-slate-200 font-medium text-sm md:text-base">1861 - 1896</span>
+            </div>
+            <div className="bg-amber-500/20 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-amber-500/30">
+              <span className="text-amber-300 font-medium text-sm md:text-base">Click to Expand</span>
             </div>
           </div>
         </div>
 
-        {/* Journey Timeline */}
-        <div className="space-y-6">
-          {stages.map((stage, index) => {
-            const Icon = stage.icon;
-            const isActive = activeStage === stage.id;
-            const isDark = stage.id === 'H';
-            
-            return (
-              <div key={stage.id} className="relative">
-                {/* Connecting line */}
-                {index < stages.length - 1 && (
-                  <div className="absolute left-12 -bottom-6 w-0.5 h-6 bg-gradient-to-b from-slate-400 to-slate-600 z-0"></div>
-                )}
-                
-                {/* Stage Card */}
-                <div
-                  className={`relative transform transition-all duration-300 ${isActive ? 'scale-[1.02]' : ''}`}
-                  onMouseEnter={() => setActiveStage(stage.id)}
-                  onMouseLeave={() => setActiveStage(null)}
-                >
-                  <div className={`${stage.bgColor} ${isDark ? 'bg-gray-900' : ''} border-l-8 ${stage.borderColor} rounded-r-xl shadow-xl backdrop-blur-lg relative overflow-hidden`}>
-                    {/* Subtle gradient overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${stage.color} opacity-5`}></div>
-                    
-                    {/* Content */}
-                    <div className="relative z-10 p-8">
-                      {/* Header */}
-                      <div className="flex items-start gap-6 mb-6 pb-6 border-b-2 border-slate-200">
-                        <div className={`flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br ${stage.color} flex items-center justify-center shadow-lg`}>
-                          <Icon className="text-white w-8 h-8" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className={`text-2xl font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                              {stage.id}.
-                            </span>
-                            <h2 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                              {stage.title}
-                            </h2>
-                          </div>
-                          <p className={`text-base ${isDark ? 'text-slate-400' : 'text-slate-600'} font-medium`}>
-                            {stage.period}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Content Details */}
-                      <div className="space-y-5">
-                        {Object.entries(stage.content).map(([key, value]) => (
-                          <div key={key} className={`${isDark ? 'bg-slate-800/50' : 'bg-white/60'} backdrop-blur-sm rounded-lg p-5 border ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                            <h4 className={`text-sm uppercase font-bold mb-2 ${isDark ? 'text-slate-400' : 'text-slate-600'} tracking-wide`}>
-                              {key}
-                            </h4>
-                            <p className={`${isDark ? 'text-slate-200' : 'text-slate-700'} leading-relaxed text-base`}>
-                              {value}
+        {/* Roadmap Timeline */}
+        <div className="relative">
+          {/* Central vertical line */}
+          <div className="absolute left-6 md:left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 via-blue-500 to-gray-500"></div>
+          
+          <div className="space-y-4 md:space-y-6">
+            {stages.map((stage, index) => {
+              const Icon = stage.icon;
+              const isExpanded = expandedStage === stage.id;
+              const isDark = stage.id === 'H';
+              
+              return (
+                <div key={stage.id} className="relative pl-16 md:pl-24">
+                  {/* Timeline dot */}
+                  <div className={`absolute left-3 md:left-8 top-6 w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br ${stage.color} flex items-center justify-center shadow-lg border-4 border-slate-900 cursor-pointer hover:scale-110 transition-transform z-10`}>
+                    <Icon className="text-white w-4 h-4 md:w-5 md:h-5" />
+                  </div>
+                  
+                  {/* Stage Card */}
+                  <div
+                    onClick={() => toggleStage(stage.id)}
+                    className={`cursor-pointer transform transition-all duration-300 hover:scale-[1.02] ${isExpanded ? 'scale-[1.01]' : ''}`}
+                  >
+                    <div className={`${isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-800/90 border-slate-700'} backdrop-blur-lg rounded-xl shadow-2xl border-2 overflow-hidden hover:shadow-amber-500/20 transition-all duration-300`}>
+                      {/* Header - Always visible */}
+                      <div className={`p-4 md:p-6 bg-gradient-to-r ${stage.color} bg-opacity-10`}>
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 md:gap-3 mb-2">
+                              <span className={`text-xl md:text-2xl font-bold ${isDark ? 'text-amber-400' : 'text-amber-500'}`}>
+                                {stage.id}
+                              </span>
+                              <h2 className="text-lg md:text-2xl font-bold text-white">
+                                {stage.title}
+                              </h2>
+                            </div>
+                            <p className="text-xs md:text-sm text-slate-400 font-medium mb-3">
+                              {stage.period}
+                            </p>
+                            <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+                              {stage.summary}
                             </p>
                           </div>
-                        ))}
+                          <div className="flex-shrink-0">
+                            {isExpanded ? (
+                              <ChevronUp className="w-6 h-6 md:w-8 md:h-8 text-amber-400" />
+                            ) : (
+                              <ChevronDown className="w-6 h-6 md:w-8 md:h-8 text-slate-400" />
+                            )}
+                          </div>
+                        </div>
                       </div>
 
-                      {/* Evolution Indicator */}
-                      {index < stages.length - 1 && (
-                        <div className="mt-6 flex items-center justify-center">
-                          <div className={`${isDark ? 'bg-slate-700' : 'bg-white'} px-6 py-2 rounded-full border-2 ${stage.borderColor} shadow-md`}>
-                            <span className={`${isDark ? 'text-slate-300' : 'text-slate-700'} font-semibold text-sm tracking-wider`}>
-                              IDEOLOGICAL PROGRESSION
-                            </span>
+                      {/* Expandable detailed content */}
+                      {isExpanded && (
+                        <div className={`p-4 md:p-6 ${isDark ? 'bg-slate-950/50' : 'bg-slate-900/50'} border-t-2 ${stage.borderColor} animate-fadeIn`}>
+                          <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+                            {/* Writings */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-amber-400 tracking-wide flex items-center gap-2">
+                                <Feather className="w-4 h-4" />
+                                Writings Involved
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.writings}
+                              </p>
+                            </div>
+
+                            {/* Characters */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-blue-400 tracking-wide flex items-center gap-2">
+                                <Users className="w-4 h-4" />
+                                Characters
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.characters}
+                              </p>
+                            </div>
+
+                            {/* Ideas */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-green-400 tracking-wide flex items-center gap-2">
+                                <BookOpen className="w-4 h-4" />
+                                Ideas
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.ideas}
+                              </p>
+                            </div>
+
+                            {/* Emotions */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-pink-400 tracking-wide flex items-center gap-2">
+                                <Heart className="w-4 h-4" />
+                                Emotions
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.emotions}
+                              </p>
+                            </div>
+
+                            {/* Symbolism */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-purple-400 tracking-wide flex items-center gap-2">
+                                <Star className="w-4 h-4" />
+                                Symbolism
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.symbolism}
+                              </p>
+                            </div>
+
+                            {/* Relevance */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-orange-400 tracking-wide flex items-center gap-2">
+                                <Shield className="w-4 h-4" />
+                                Relevance
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.relevance}
+                              </p>
+                            </div>
+
+                            {/* Impact */}
+                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} md:col-span-2`}>
+                              <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-red-400 tracking-wide flex items-center gap-2">
+                                <Flame className="w-4 h-4" />
+                                Impact on Rizal
+                              </h4>
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                                {stage.details.impact}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Flow Logic Analysis */}
-        <div className="mt-16 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl p-10 border-2 border-slate-600 shadow-2xl">
-          <h3 className="text-3xl font-bold text-white mb-8 text-center">
-            Flow Logic and Coherence
-          </h3>
-          <div className="space-y-6">
-            <div className="bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 border border-slate-600">
-              <h4 className="font-bold text-amber-400 text-lg mb-3">Phase I: Foundation and Cultural Assertion</h4>
-              <p className="text-slate-300 leading-relaxed">
-                From childhood experiences of injustice to the articulation of linguistic nationalism in "Sa Aking mga Kababata," 
-                Rizal establishes the fundamental premise that Filipino identity must be grounded in cultural distinctiveness and language pride.
-              </p>
-            </div>
-            <div className="bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 border border-slate-600">
-              <h4 className="font-bold text-blue-400 text-lg mb-3">Phase II: Intellectual Awakening and Revolutionary Consciousness</h4>
-              <p className="text-slate-300 leading-relaxed">
-                "A La Juventud Filipina" expands the nationalist project to encompass intellectual development, while the Elias character 
-                in Noli Me Tangere introduces the revolutionary alternative to peaceful reform, marking Rizal's growing awareness of 
-                multiple paths to liberation.
-              </p>
-            </div>
-            <div className="bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 border border-slate-600">
-              <h4 className="font-bold text-purple-400 text-lg mb-3">Phase III: Radicalization and Inclusive Liberation</h4>
-              <p className="text-slate-300 leading-relaxed">
-                The conclusion of El Filibusterismo articulates more radical conditions for revolution, while the Letter to the Young Women 
-                of Malolos extends the nationalist framework to include gender equality, demonstrating that true liberation must encompass all sectors of society.
-              </p>
-            </div>
-            <div className="bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 border border-slate-600">
-              <h4 className="font-bold text-rose-400 text-lg mb-3">Phase IV: Political Action and Ultimate Sacrifice</h4>
-              <p className="text-slate-300 leading-relaxed">
-                La Liga Filipina represents the transition from theoretical writing to concrete political organization. When this peaceful 
-                effort fails, Mi Último Adiós transforms Rizal's execution into the ultimate patriotic act, ensuring his martyrdom would 
-                inspire the revolution he had intellectually prepared but never led.
-              </p>
-            </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Visual Clarity Section */}
-        <div className="mt-12 bg-white rounded-xl p-10 border-2 border-slate-300 shadow-2xl">
-          <h3 className="text-3xl font-bold text-slate-800 mb-8 text-center">
-            Visual Organization and Design
-          </h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-700 text-xl mb-4">Structural Elements</h4>
-              <div className="space-y-3 text-slate-600">
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Chronological progression with clear temporal markers</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Color-coded thematic stages for visual differentiation</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Icon system representing the nature of each developmental phase</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Border emphasis indicating transition points</span>
-                </p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-700 text-xl mb-4">Content Organization</h4>
-              <div className="space-y-3 text-slate-600">
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Hierarchical information architecture with clear categorization</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Explicit articulation of significance for each element</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Visual connection indicators showing ideological development</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <span className="font-bold text-slate-800">•</span>
-                  <span>Professional academic presentation standards</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Conclusion */}
-        <div className="mt-12 text-center">
-          <div className="inline-block bg-gradient-to-r from-slate-700 to-slate-900 p-8 rounded-xl shadow-2xl border-2 border-slate-600">
-            <p className="text-xl text-slate-300 italic leading-relaxed max-w-3xl">
-              "The youth is the hope of our fatherland. The country's future will be in their hands, 
-              and it is our duty to cultivate in them the virtues that will make them worthy of that trust."
+        {/* Footer Quote */}
+        <div className="mt-12 md:mt-16 text-center">
+          <div className="inline-block bg-gradient-to-r from-amber-900/40 to-amber-800/40 backdrop-blur-sm p-6 md:p-8 rounded-xl shadow-2xl border-2 border-amber-600/30">
+            <p className="text-base md:text-xl text-amber-100 italic leading-relaxed max-w-3xl">
+              "The youth is the hope of our fatherland."
             </p>
-            <p className="text-slate-400 mt-4 font-medium">José Rizal</p>
+            <p className="text-amber-400 mt-3 md:mt-4 font-semibold text-sm md:text-base">— José Rizal</p>
           </div>
         </div>
       </div>
