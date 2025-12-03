@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { BookOpen, Feather, Users, Flame, Shield, FileText, Heart, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { BookOpen, Feather, Users, Flame, Shield, FileText, Heart, Star, X, Info } from 'lucide-react';
 
 const RizalFlowchart = () => {
-  const [expandedStage, setExpandedStage] = useState(null);
+  const [hoveredStage, setHoveredStage] = useState(null);
+  const [selectedDetail, setSelectedDetail] = useState(null);
 
   const stages = [
     {
@@ -160,8 +161,19 @@ const RizalFlowchart = () => {
     }
   ];
 
-  const toggleStage = (stageId) => {
-    setExpandedStage(expandedStage === stageId ? null : stageId);
+  const openDetailModal = (stage, detailKey, detailValue) => {
+    setSelectedDetail({
+      stageId: stage.id,
+      stageTitle: stage.title,
+      stagePeriod: stage.period,
+      detailKey,
+      detailValue,
+      color: stage.color
+    });
+  };
+
+  const closeDetailModal = () => {
+    setSelectedDetail(null);
   };
 
   return (
@@ -199,7 +211,7 @@ const RizalFlowchart = () => {
               <span className="text-slate-200 font-medium text-sm md:text-base">1861 - 1896</span>
             </div>
             <div className="bg-amber-500/20 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-amber-500/30">
-              <span className="text-amber-300 font-medium text-sm md:text-base">Click to Expand</span>
+              <span className="text-amber-300 font-medium text-sm md:text-base">Hover to Expand</span>
             </div>
           </div>
         </div>
@@ -212,21 +224,23 @@ const RizalFlowchart = () => {
           <div className="space-y-4 md:space-y-6">
             {stages.map((stage, index) => {
               const Icon = stage.icon;
-              const isExpanded = expandedStage === stage.id;
+              const isHovered = hoveredStage === stage.id;
               const isDark = stage.id === 'H';
               
               return (
-                <div key={stage.id} className="relative pl-16 md:pl-24">
+                <div 
+                  key={stage.id} 
+                  className="relative pl-16 md:pl-24"
+                  onMouseEnter={() => setHoveredStage(stage.id)}
+                  onMouseLeave={() => setHoveredStage(null)}
+                >
                   {/* Timeline dot */}
-                  <div className={`absolute left-3 md:left-8 top-6 w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br ${stage.color} flex items-center justify-center shadow-lg border-4 border-slate-900 cursor-pointer hover:scale-110 transition-transform z-10`}>
+                  <div className={`absolute left-3 md:left-8 top-6 w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br ${stage.color} flex items-center justify-center shadow-lg border-4 border-slate-900 transition-all duration-300 z-10 ${isHovered ? 'scale-125 shadow-amber-500/50' : 'scale-100'}`}>
                     <Icon className="text-white w-4 h-4 md:w-5 md:h-5" />
                   </div>
                   
                   {/* Stage Card */}
-                  <div
-                    onClick={() => toggleStage(stage.id)}
-                    className={`cursor-pointer transform transition-all duration-300 hover:scale-[1.02] ${isExpanded ? 'scale-[1.01]' : ''}`}
-                  >
+                  <div className="transform transition-all duration-300">
                     <div className={`${isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-800/90 border-slate-700'} backdrop-blur-lg rounded-xl shadow-2xl border-2 overflow-hidden hover:shadow-amber-500/20 transition-all duration-300`}>
                       {/* Header - Always visible */}
                       <div className={`p-4 md:p-6 bg-gradient-to-r ${stage.color} bg-opacity-10`}>
@@ -247,99 +261,150 @@ const RizalFlowchart = () => {
                               {stage.summary}
                             </p>
                           </div>
-                          <div className="flex-shrink-0">
-                            {isExpanded ? (
-                              <ChevronUp className="w-6 h-6 md:w-8 md:h-8 text-amber-400" />
-                            ) : (
-                              <ChevronDown className="w-6 h-6 md:w-8 md:h-8 text-slate-400" />
-                            )}
-                          </div>
                         </div>
                       </div>
 
-                      {/* Expandable detailed content */}
-                      {isExpanded && (
-                        <div className={`p-4 md:p-6 ${isDark ? 'bg-slate-950/50' : 'bg-slate-900/50'} border-t-2 ${stage.borderColor} animate-fadeIn`}>
+                      {/* Auto-expanding detailed content on hover */}
+                      <div 
+                        className={`overflow-hidden transition-all duration-500 ease-in-out ${isHovered ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+                      >
+                        <div className={`p-4 md:p-6 ${isDark ? 'bg-slate-950/50' : 'bg-slate-900/50'} border-t-2 ${stage.borderColor}`}>
                           <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                             {/* Writings */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Writings Involved', stage.details.writings);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-amber-400 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-amber-400 tracking-wide flex items-center gap-2">
                                 <Feather className="w-4 h-4" />
                                 Writings Involved
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.writings}
                               </p>
+                              <p className="text-xs text-amber-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Characters */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Characters', stage.details.characters);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-blue-400 tracking-wide flex items-center gap-2">
                                 <Users className="w-4 h-4" />
                                 Characters
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.characters}
                               </p>
+                              <p className="text-xs text-blue-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Ideas */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Ideas', stage.details.ideas);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-green-400 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-green-400 tracking-wide flex items-center gap-2">
                                 <BookOpen className="w-4 h-4" />
                                 Ideas
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.ideas}
                               </p>
+                              <p className="text-xs text-green-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Emotions */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Emotions', stage.details.emotions);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-pink-400 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-pink-400 tracking-wide flex items-center gap-2">
                                 <Heart className="w-4 h-4" />
                                 Emotions
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.emotions}
                               </p>
+                              <p className="text-xs text-pink-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Symbolism */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Symbolism', stage.details.symbolism);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-purple-400 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-purple-400 tracking-wide flex items-center gap-2">
                                 <Star className="w-4 h-4" />
                                 Symbolism
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.symbolism}
                               </p>
+                              <p className="text-xs text-purple-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Relevance */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'}`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Relevance', stage.details.relevance);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} cursor-pointer hover:scale-105 hover:border-orange-400 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-orange-400 tracking-wide flex items-center gap-2">
                                 <Shield className="w-4 h-4" />
                                 Relevance
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.relevance}
                               </p>
+                              <p className="text-xs text-orange-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
 
                             {/* Impact */}
-                            <div className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} md:col-span-2`}>
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openDetailModal(stage, 'Impact on Rizal', stage.details.impact);
+                              }}
+                              className={`${isDark ? 'bg-slate-800/70' : 'bg-slate-800/50'} backdrop-blur-sm rounded-lg p-4 md:p-5 border ${isDark ? 'border-slate-600' : 'border-slate-700'} md:col-span-2 cursor-pointer hover:scale-105 hover:border-red-400 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 group`}
+                            >
                               <h4 className="text-xs md:text-sm uppercase font-bold mb-2 text-red-400 tracking-wide flex items-center gap-2">
                                 <Flame className="w-4 h-4" />
                                 Impact on Rizal
+                                <Info className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                               </h4>
-                              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
+                              <p className="text-slate-300 leading-relaxed text-sm md:text-base line-clamp-3">
                                 {stage.details.impact}
                               </p>
+                              <p className="text-xs text-red-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Click for more →</p>
                             </div>
                           </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -358,6 +423,66 @@ const RizalFlowchart = () => {
           </div>
         </div>
       </div>
+
+      {/* Detail Modal */}
+      {selectedDetail && (
+        <div 
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn"
+          onClick={closeDetailModal}
+        >
+          <div 
+            className="bg-slate-800 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto shadow-2xl border-2 border-slate-700 animate-slideUp"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className={`bg-gradient-to-r ${selectedDetail.color} p-6 md:p-8 rounded-t-2xl relative`}>
+              <button
+                onClick={closeDetailModal}
+                className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 hover:rotate-90"
+              >
+                <X className="w-6 h-6 text-white" />
+              </button>
+              <div className="pr-12">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-xl font-bold text-white/80">
+                    {selectedDetail.stageId}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">
+                    {selectedDetail.stageTitle}
+                  </h3>
+                </div>
+                <p className="text-white/80 text-sm md:text-base mb-4">
+                  {selectedDetail.stagePeriod}
+                </p>
+                <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
+                  <h4 className="text-white font-bold text-sm md:text-base">
+                    {selectedDetail.detailKey}
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 md:p-8">
+              <div className="bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-slate-700">
+                <p className="text-slate-200 leading-relaxed text-base md:text-lg whitespace-pre-line">
+                  {selectedDetail.detailValue}
+                </p>
+              </div>
+              
+              {/* Close button at bottom */}
+              <div className="mt-6 flex justify-center">
+                <button
+                  onClick={closeDetailModal}
+                  className={`bg-gradient-to-r ${selectedDetail.color} text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg`}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
