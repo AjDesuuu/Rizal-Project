@@ -188,34 +188,41 @@ const RizalFlowchart = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-block mb-6">
-            <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-              <Star className="text-white w-8 h-8 md:w-12 md:h-12" />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-            JOSÉ RIZAL
-          </h1>
-          <p className="text-xl md:text-2xl text-amber-400 font-semibold mb-2">
-            Journey to Nationalism
-          </p>
-          <p className="text-base md:text-lg text-slate-400 mb-6 max-w-2xl mx-auto">
-            Interactive roadmap of Rizal's transformation from child to national hero
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
-              <span className="text-slate-200 font-medium text-sm md:text-base">Interactive Roadmap</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
-              <span className="text-slate-200 font-medium text-sm md:text-base">1861 - 1896</span>
-            </div>
-            <div className="bg-amber-500/20 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-amber-500/30">
-              <span className="text-amber-300 font-medium text-sm md:text-base">Hover to Expand</span>
-            </div>
+      <div className="text-center mb-12 md:mb-16">
+        <div className="inline-block mb-6">
+          <div className="w-40 h-40 md:w-56 md:h-56 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+            <img
+              src="/src/resources/Rizal.jpg"
+              alt="José Rizal"
+              className="w-full h-full object-cover object-top"
+            />
           </div>
         </div>
 
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+          JOSÉ RIZAL
+        </h1>
+
+        <p className="text-xl md:text-2xl text-amber-400 font-semibold mb-2">
+          Journey to Nationalism
+        </p>
+
+        <p className="text-base md:text-lg text-slate-400 mb-6 max-w-2xl mx-auto">
+          Interactive roadmap of Rizal's transformation from child to national hero
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+          <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
+            <span className="text-slate-200 font-medium text-sm md:text-base">Interactive Roadmap</span>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-white/20">
+            <span className="text-slate-200 font-medium text-sm md:text-base">1861 - 1896</span>
+          </div>
+          <div className="bg-amber-500/20 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-lg border border-amber-500/30">
+            <span className="text-amber-300 font-medium text-sm md:text-base">Hover to Expand</span>
+          </div>
+        </div>
+      </div>
         {/* Roadmap Timeline */}
         <div className="relative">
           {/* Central vertical line */}
@@ -247,14 +254,14 @@ const RizalFlowchart = () => {
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 md:gap-3 mb-2">
-                              <span className={`text-xl md:text-2xl font-bold ${isDark ? 'text-amber-400' : 'text-amber-500'}`}>
+                              <span className={`text-xl md:text-2xl font-bold text-amber-100`}>
                                 {stage.id}
                               </span>
                               <h2 className="text-lg md:text-2xl font-bold text-white">
                                 {stage.title}
                               </h2>
                             </div>
-                            <p className="text-xs md:text-sm text-slate-400 font-medium mb-3">
+                            <p className="text-xs md:text-sm text-lime-100 font-medium mb-3">
                               {stage.period}
                             </p>
                             <p className="text-sm md:text-base text-slate-300 leading-relaxed">
