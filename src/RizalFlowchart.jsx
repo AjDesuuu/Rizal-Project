@@ -192,7 +192,7 @@ const RizalFlowchart = () => {
         <div className="inline-block mb-6">
           <div className="w-40 h-40 md:w-56 md:h-56 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
             <img
-              src="/resources/Rizal.jpg"
+              src="/Rizal.jpg"
               alt="José Rizal"
               className="w-full h-full object-cover object-top"
             />
